@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dados em Tabela</title>
+</head>
+<body>
+  <h1>Veja os dados no console (F12)</h1>
+
+  <script>
+    // Coleta de dados via prompt
+    let magica = prompt("Digite uma palavra mágica:");
+    let cor = prompt("Digite sua cor favorita:");
+    let comida = prompt("Digite sua comida favorita:");
+    let idade = prompt("Digite sua idade:");
+
+    // Agrupando os dados em um objeto
+    let dadosUsuario = {
+      magica: magica,
+      cor: cor,
+      comida: comida,
+      idade: idade
+    };
+
+    // Exibindo como tabela no console
+    console.table(dadosUsuario);
+  </script>
+</body>
+</html>
