@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Pessoas e Comparação</title>
+</head>
+
+<body>
+    <h1>ATenção: por favor abra o console (F12) para ver os resultados.</h1>
+    <script>
+        // Quantas pessoas o usuário quer registrar?
+        let totalPessoas = parseInt(prompt("Quantas pessoas você quer registrar?"));
+
+        // Array para guardar os dados das pessoas
+        let pessoas = [];
+
+        // Coleta de dados
+        for (let i = 0; i < totalPessoas; i++) {
+            let nome = prompt(`Digite o nome da pessoa ${i + 1}:`);
+            let idade = parseInt(prompt(`Digite a idade de ${nome}:`));
+            let cor = prompt(`Digite a cor favorita de ${nome}:`);
+
+            pessoas.push({ nome: nome, idade: idade, cor: cor });
+        }
+
+        // Exibindo os dados no console
+        console.log("----- Dados Registrados -----");
+        pessoas.forEach((p, i) => {
+            console.log(`Pessoa ${i + 1}: Nome = ${p.nome}, Idade = ${p.idade}, Cor favorita = ${p.cor}`);
+        });
+
+        // Comparando para descobrir o mais velho
+        let maisVelho = pessoas[0];
+        for (let i = 1; i < pessoas.length; i++) {
+            if (pessoas[i].idade > maisVelho.idade) {
+                maisVelho = pessoas[i];
+            }
+        }
+
+        console.log("----- Comparação de Idades -----");
+        console.log(`${maisVelho.nome} é a pessoa mais velha com ${maisVelho.idade} anos.`);
+
+        // Quantidade de registros
+        console.log("----- Total de Pessoas Registradas -----");
+        console.log(`Foram registradas ${pessoas.length} pessoas.`);
+    </script>
+</body>
+
+</html>

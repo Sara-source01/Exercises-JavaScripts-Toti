@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparação de Dados</title>
+</head>
+<body>
+    <!-- O que esse código faz:
+Usa prompt() para perguntar nome, idade e cor favorita de várias pessoas.
+
+Armazena as respostas num array de objetos.
+
+Faz comparações entre todos os pares possíveis.
+
+Mostra as mensagens no console do navegador. -->
+  <h1>Atenção: abra o console para ver os resultados</h1>
+
+  <script>
+    // Função para coletar dados de uma pessoa
+    function coletarDados() {
+      const nome = prompt("Digite o nome da pessoa:");
+      const idade = parseInt(prompt(`Digite a idade de ${nome}:`));
+      const cor = prompt(`Digite a cor favorita de ${nome}:`);
+      return { nome, idade, cor };
+    }
+
+    // Coletando dados de duas ou mais pessoas
+    const pessoas = [];
+    const quantidade = parseInt(prompt("Quantas pessoas deseja cadastrar?"));
+
+    for (let i = 0; i < quantidade; i++) {
+      pessoas.push(coletarDados());
+    }
+
+    // Comparações
+    for (let i = 0; i < pessoas.length; i++) {
+      for (let j = i + 1; j < pessoas.length; j++) {
+        const p1 = pessoas[i];
+        const p2 = pessoas[j];
+
+        // Comparando idades
+        if (p1.idade > p2.idade) {
+          console.log(`${p1.nome} é mais velho(a) que ${p2.nome}`);
+        } else if (p1.idade < p2.idade) {
+          console.log(`${p2.nome} é mais velho(a) que ${p1.nome}`);
+        } else {
+          console.log(`${p1.nome} e ${p2.nome} têm a mesma idade`);
+        }
+
+        // Comparando cores favoritas
+        if (p1.cor.toLowerCase() === p2.cor.toLowerCase()) {
+          console.log(`${p1.nome} e ${p2.nome} têm a mesma cor favorita: ${p1.cor}`);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
