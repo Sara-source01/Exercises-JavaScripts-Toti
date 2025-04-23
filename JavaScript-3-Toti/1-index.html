@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparações</title>
+</head>
+
+<body>
+</body>
+<script>
+  function Pessoa(nome, idade, corFavorita) {
+    this.nome = nome;
+    this.idade = parseInt(idade);
+    this.corFavorita = corFavorita.toLowerCase();
+  }
+
+  let pessoas = [];
+
+  function adicionarPessoa() {
+    const nome = prompt("Digite o nome:");
+    const idade = prompt("Digite a idade:");
+    const corFavorita = prompt("Digite a cor favorita:");
+    return new Pessoa(nome, idade, corFavorita);
+  }
+
+  let adicionarMais = true;
+
+  while (adicionarMais) {
+    const pessoa = adicionarPessoa();
+    pessoas.push(pessoa);
+
+    const resposta = prompt("Deseja adicionar outra pessoa? (s/n)").toLowerCase();
+    if (resposta !== 's') {
+      adicionarMais = false;
+    }
+  }
+
+  // Mostrar os nomes registrados
+  console.log("Registros de:");
+  pessoas.forEach(p => {
+    console.log(p.nome);
+  });
+
+
+  let maiorIdade = Math.max(...pessoas.map(p => p.idade));
+  let maisVelhas = pessoas.filter(p => p.idade === maiorIdade);
+
+  console.log("\nA pessoa mais velha é:");
+  maisVelhas.forEach(p => console.log(p.nome));
+
+  console.log("\nComparação de idades:");
+  for (let i = 0; i < pessoas.length; i++) {
+    for (let j = i + 1; j < pessoas.length; j++) {
+      const p1 = pessoas[i];
+      const p2 = pessoas[j];
+      if (p1.idade > p2.idade) {
+        console.log(`${p1.nome} é mais velho(a) que ${p2.nome}`);
+      } else if (p1.idade < p2.idade) {
+        console.log(`${p2.nome} é mais velho(a) que ${p1.nome}`);
+      } else {
+        console.log(`${p1.nome} e ${p2.nome} têm a mesma idade`);
+      }
+    }
+  }
+
+  // Comparar cores favoritas
+  console.log("\nComparação de cores favoritas:");
+  let encontrouCorIgual = false;
+
+  for (let i = 0; i < pessoas.length; i++) {
+    for (let j = i + 1; j < pessoas.length; j++) {
+      const p1 = pessoas[i];
+      const p2 = pessoas[j];
+      if (p1.corFavorita === p2.corFavorita) {
+        console.log(`${p1.nome} e ${p2.nome} têm a mesma cor favorita: ${p1.corFavorita}`);
+        encontrouCorIgual = true;
+      }
+    }
+  }
+
+  if (!encontrouCorIgual) {
+    console.log("Nenhuma cor favorita em comum.");
+  }
+</script>
+
+</html>
