@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Pessoas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 30px;
+        }
+
+        label,
+        input {
+            margin: 5px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background-color: #fff0f0c7;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome">
+
+    <label for="idade">Idade:</label>
+    <input type="number" id="idade">
+
+    <button onclick="registrar()">Registrar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+
+        // Lista para armazenar todos os registros
+        const registros = [];
+
+        function registrar() {
+            const nome = document.getElementById("nome").value.trim();
+            const idade = parseInt(document.getElementById("idade").value);
+
+            if (nome === "" || isNaN(idade)) {
+                alert("Por favor, preencha o nome e a idade corretamente.");
+                return;
+            }
+
+            registros.push({ nome, idade });
+
+
+            let texto = "";
+            registros.forEach(pessoa => {
+                texto += `Registro de:\n ${pessoa.nome}\n`;
+            });
+
+            // Quem é a pessoa mais velha?
+            let maisVelha = registros[0];
+            registros.forEach(pessoa => {
+                if (pessoa.idade > maisVelha.idade) {
+                    maisVelha = pessoa;
+                }
+            });
+
+            texto += `\nA pessoa mais velha é: ${maisVelha.nome}, ${maisVelha.idade} anos.`;
+
+            document.getElementById("resultado").textContent = texto;
+
+            // Limpar campos depois registrar
+            document.getElementById("nome").value = "";
+            document.getElementById("idade").value = "";
+            document.getElementById("nome").focus();
+        }
+    </script>
+
+</body>
+
+</html>
