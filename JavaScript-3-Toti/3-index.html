@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Conhecendo o DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Conhecendo o DOM</h1>
+    <p>Olá, mundo!!</p>
+    <p>Olá, DOM!!</p>
+    <p>O que mais?</p>
+
+    <button id="botaoClique">Clique em mim</button>
+
+    <div style="margin-top: 20px;">
+        <label for="newTask">Tarefa:</label>
+        <input type="text" id="newTask">
+        <button id="btnAdicionar">Adicionar</button>
+    </div>
+
+    <ul id="listaTarefas">
+        <!-- Tarefas vão aparecer aqui -->
+    </ul>
+
+    <script>
+        const botaoClique = document.getElementById("botaoClique");
+        const botaoAdicionar = document.getElementById("btnAdicionar");
+        const inputTarefa = document.getElementById("newTask");
+        const listaTarefas = document.getElementById("listaTarefas");
+
+        botaoClique.addEventListener("click", function (event) {
+            alert("Você clicou no botão!");
+            console.log("Botão clicado:", event.target); // Mostra qual botão foi clicado
+        });
+
+        botaoAdicionar.addEventListener("click", function (event) {
+            const tarefa = inputTarefa.value.trim();
+
+            if (tarefa === "") {
+                alert("Digite uma tarefa!");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.textContent = tarefa;
+
+            listaTarefas.appendChild(li);
+            inputTarefa.value = "";
+            inputTarefa.focus();
+
+            console.log("Botão clicado:", event.target); // Também mostra esse botão
+        });
+    </script>
+
+</body>
+
+</html>
